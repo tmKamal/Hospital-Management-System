@@ -8,12 +8,9 @@ public class Pharmaceutical {
 	private double price;
 	
 	
-	
 	public int getId() {
 		return id;
 	}
-
-
 
 	public void setId(int id) {
 		this.id = id;
@@ -27,17 +24,13 @@ public class Pharmaceutical {
 		this.brandName=brandName;
 	}
 
-
 	public String getName() {
 		return name;
 	}
 
-
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 
 	public int getQty() {
@@ -45,11 +38,9 @@ public class Pharmaceutical {
 	}
 
 
-
 	public void setQty(int qty) {
 		this.qty = qty;
 	}
-
 
 
 	public double getPrice() {
@@ -57,11 +48,9 @@ public class Pharmaceutical {
 	}
 
 
-
 	public void setPrice(double price) {
 		this.price = price;
 	}
-
 
 
 	public Pharmaceutical(int id, String name,String brandName, int qty, double price) {
@@ -72,7 +61,6 @@ public class Pharmaceutical {
 		this.qty = qty;
 		this.price = price;
 	}
-
 
 
 	@Override

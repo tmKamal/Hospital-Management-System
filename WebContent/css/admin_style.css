@@ -1,0 +1,406 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+html{
+    background-color: #ecedf1;/*background colour 01*/
+    color: #555;
+    font-family: 'Lato','Arial',sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    text-rendering: optimizeLegibility;
+}
+
+body{
+    background-color: #ecedf1;/*background colour 01*/
+    overflow-x: hidden;
+}
+
+/*==============================
+NEW STRUCTURE
+================================*/
+
+#wrapper{
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled{
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100vh;
+    max-height: 100vh;
+    margin-left: -250px;
+    overflow: hidden;
+    background-color: rgba(17,17,17,0.9);
+    opacity: 0.9;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+#wrapper.toggled #sidebar-wrapper{
+    width: 250px;
+
+}
+
+#page-content-wrapper{
+    width: 100%;
+    position: absolute;
+
+}
+
+#wrapper.toggled #page-content-wrapper{
+    position: absolute;
+    margin-right: -250px;
+
+}
+
+/*END - NEW STRUCTURE
+================================*/
+
+/*===============================
+Styles Of Side-Bar
+=================================*/
+.toggle_menu{
+    /*position: fixed;
+    left: 0;*/
+    padding: 5px 10px 5px 10px;
+    /*margin-top: 10px;*/
+    color: white;
+    cursor: pointer;
+    background-color: #648B79;
+    z-index: 10000;
+    font-size: 20px;
+    transition: all 0.4s ease-out;
+}
+
+.box_header{
+    text-align: center;
+}
+
+.boxed_item{
+
+    font-weight: 200;
+    padding: 10px 20px;
+    display: inline-block;
+    border: solid 2px white;
+    box-sizing: border-box;
+    font-size: 22px;
+    color: white;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.logo_bold{
+    font-weight: 800;
+}
+
+.logo_title{
+    color: white;
+    font-weight: 200;
+    font-size: 12px;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.navigation_section{
+    margin: 20px 0;
+    display: block;
+    width: 200px;
+    margin-left: 25px;
+    list-style: none;
+}
+
+.navigation_item{
+    font-weight: 200;
+    color: white;
+    padding: 12px 0px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #D8D8D8;
+
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    border-bottom: solid 1px #444;
+
+}
+.navigation_item a:link,
+.navigation_item a:visited{
+    font-weight: 200;
+    color: white;
+    padding: 12px 0px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #D8D8D8;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.navigation_item:hover{
+    color: white;
+    transition: all 0.3s ease-in-out;
+    border-bottom: solid 1px white;
+}
+
+
+.boxed_item_smaller{
+    font-size: 12px;
+    color: #D8D8D8;
+    width: 200px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    border-width: 1px;
+    margin: 0 0 20px 0;
+}
+
+.boxed_item_smaller:hover{
+    background-color: white;
+    color: #111;
+    transition: all 0.3s ease-in-out;
+}
+/*END - Styles Of Side-Bar
+=================================*/
+
+/*==================================
+Main Content
+===================================*/
+
+/*Navigation
+=============*/
+.page-nav{
+    height: 30px;
+    width: 100%;
+    background-color: #fff;
+    /*box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;*/
+    -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0,0.5);
+    -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+}
+
+.page-nav ul{
+    float: right;
+    margin-top: 0px;
+
+}
+
+.page-nav ul li{
+
+    list-style: none;
+    display: inline-block;
+    font-size: 90%;
+    font-weight: 300;
+    padding-right: 10px;
+    border-left: 1px solid #6c757d;
+    padding-left: 10px;
+    line-height: 1;
+
+}
+
+.page-nav ul li a:link,
+.page-nav ul li a:visited{
+
+    text-decoration: none;
+    color: #777;
+
+}
+
+.page-nav ul li a:hover,
+.page-nav ul li a:active{
+
+    color: #000;
+    font-weight: 400;
+}
+/*END-Navigation*/
+
+/*Content
+================*/
+
+.page-content-body-wrapper{
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.main_content{
+    background-color: #fff;
+    /*box-shadow: 0 1px 1px rgba(0, 0, 0, .05);*/
+    box-shadow: 1px 1px 1px rgba(0, 0,0, 0.2);
+    padding: 20px 20px;
+}
+
+/*Section -Titles
+==================*/
+
+.content-title{
+
+    padding-left: 0;
+    margin-bottom: 40px;
+
+}
+
+.content-title h2{
+    font-size: 120%;
+    color: #4e555b;
+    margin-bottom: 20px;
+    font-weight: 500;
+
+
+}
+
+
+
+/*btn upload*/
+
+/*CSS for HIDE original input */
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+/*HIDE end*/
+
+
+.inputfile + label {
+    max-width: 80%;
+    font-size: 16px;
+    /* 20px */
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 3px 10px;
+    /* 10px 20px */
+    border-radius: 3px; /*EDITED*/
+    margin-left: 15px;
+}
+
+
+
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label * {
+    /* pointer-events: none; */
+    /* in case of FastClick lib use */
+}
+
+
+
+/*style-6*/
+.inputfile-6 + label {
+    color: #d3394c;
+
+}
+
+.inputfile-6 + label {
+    border: 1px solid #b2b2b2;
+    background-color: #f1e5e6;
+    padding: 0;
+}
+
+.inputfile-6:focus + label,
+.inputfile-6.has-focus + label,
+.inputfile-6 + label:hover {
+    border-color: #722040;
+}
+
+.inputfile-6 + label span,
+.inputfile-6 + label strong {
+    padding: 5px 10px;  /*EDITED*/
+    /* 10px 20px */
+}
+
+.inputfile-6 + label span {
+    width: 200px;
+    min-height: 18px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.inputfile-6 + label strong {
+    height: 100%;
+    color: #f1e5e6;
+    background-color: #d3394c;
+    display: inline-block;
+}
+
+.inputfile-6:focus + label strong,
+.inputfile-6.has-focus + label strong,
+.inputfile-6 + label:hover strong {
+    background-color: #722040;
+}
+
+@media screen and (max-width: 50em) {
+    .inputfile-6 + label strong {
+        display: block;
+    }
+}
+
+
+/*end upload btn*/
+
+/*End-Content*/
+
+
+/*End MAIN CONTENT
+===================================*/
+
+
+
+/*==================================
+Responsive Media Queries
+===================================*/
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 0;
+    }
+    #wrapper.toggled {
+        padding-left: 250px;
+    }
+    #sidebar-wrapper {
+        width: 0;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        width: 250px;
+    }
+    #page-content-wrapper {
+
+        position: relative;
+    }
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+
+
+
+
+
+

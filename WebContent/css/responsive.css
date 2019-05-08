@@ -1,0 +1,143 @@
+
+/*normal pc display: 1023 to 1140px*/
+@media only screen and (max-width: 1200px){
+
+    /*banner imgs*/
+    .side-image{
+        width: 85%;
+        height: auto;
+        margin-top: 20px;
+
+    }
+}
+
+/*big tablets: 768 to 1023px*/
+@media only screen and (max-width: 1023px){
+    /*logo-upper-nav*/
+    .logo{
+        width: 100%;
+        height: auto;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    }
+
+    .nav-search{
+        padding-top: 10px;
+        width: 100%;
+    }
+
+    .nav-search-input input[type=text]{
+        height: 35px;
+        font-size: 80%;
+        font-weight: 300;
+        padding-left: 20px;
+    }
+
+    .btn-search{
+        height: 35px;
+        line-height: 0.6;
+        font-size: 80%;
+    }
+
+    .btn-search-1{
+        height: 35px;
+        line-height: 0.6;
+        font-size: 80%;
+    }
+
+    .btn-sm, .btn-group-sm > .btn {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        border-radius: 0.2rem;
+    }
+
+    .nav-cart{
+        height: 30px;
+        padding-left: 10px;
+        padding-top: 10px;
+    }
+
+
+    /*banner imgs*/
+    .side-image{
+        width: 100%;
+        height: auto;
+        margin-top: 20px;
+
+    }
+}
+
+/*Small tablets: 481 to 767px*/
+@media only screen and (max-width: 767px){
+    /*logo-upper-nav*/
+    .logo{
+        width: 100%;
+        height: auto;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    }
+
+    .nav-search{
+        padding-top: 10px;
+        width: 100%;
+    }
+
+    .nav-search-input input[type=text]{
+        width: 100px;
+        height: 35px;
+        font-size: 80%;
+        font-weight: 300;
+        padding-left: 20px;
+    }
+
+    .btn-search{
+        width: 70px;
+        height: 35px;
+        line-height: 0.6;
+        font-size: 80%;
+        display: none;
+    }
+
+    .btn-search-1{
+        height: 35px;
+        line-height: 0.6;
+        font-size: 80%;
+
+    }
+
+    .nav-cart{
+        width: 100px;
+        height: 35px;
+        padding-left: 10px;
+        padding-top: 10px;
+    }
+    .btn-sm, .btn-group-sm > .btn {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.0;
+        border-radius: 0.2rem;
+    }
+
+    .nav-cart .cart-text{
+        display: none;
+    }
+
+    /*banner imgs*/
+    .side-image{
+        width: 70%;
+        height: auto;
+        margin-top: 20px;
+        padding-right: 10px;
+}
+
+/*Small phones: 0 to 480px*/
+@media only screen and (max-width: 480px){
+    /*banner imgs*/
+    .side-image{
+        width: 80%;
+        height: auto;
+        margin-top: 20px;
+
+    }
+}

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,7 +11,7 @@
     <!-- Bootstrap CSS CDN-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!--Admin CSS-->
-    <link rel="stylesheet" href="../css/admin_style.css">
+    <link rel="stylesheet" href="css/admin_style.css">
     <!--Font CDN-->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400" rel="stylesheet">
     <!--FontAwesome icon library CDN-->
