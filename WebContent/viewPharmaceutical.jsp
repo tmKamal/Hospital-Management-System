@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.List,com.hospital.management.jdbc.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -26,6 +26,7 @@ Custom content page - body - Referencing (adminheader.jsp)
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Brand Name</th>
                         <th scope="col">Qty</th>
                         <th scope="col">Price</th>
                         <th scope="col">Edit</th>
@@ -36,13 +37,19 @@ Custom content page - body - Referencing (adminheader.jsp)
 
                    			
                    		<%
+                   		
+                   		
 							for(Pharmaceutical printList : listJspP){
+								java.util.Formatter formatter = new java.util.Formatter();
 								%>
 								<tr>
+									<td><%= printList.getId()%></td>
 									<td><%= printList.getName()%></td>
 									<td><%= printList.getBrandName()%></td>
 									<td><%= printList.getQty()%></td>
-									<td><%= printList.getPrice()%></td>
+									<td align="right"><%= formatter.format("%.2f", printList.getPrice()) %></td>
+									<td><a href="PharmaceuticalControllerServlet?info=updateForm&id=<%= printList.getId()%>">Update</a></td>
+									<td><a href="PharmaceuticalControllerServlet?info=deleteForm&id=<%= printList.getId()%>">Delete</a></td>
 								</tr>
 								<% 
 							}

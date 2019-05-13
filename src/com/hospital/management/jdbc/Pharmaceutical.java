@@ -1,18 +1,18 @@
 package com.hospital.management.jdbc;
 
 public class Pharmaceutical {
-	private int id;
-	private String name;
+	 String id;
+	 String name;
 	private String brandName;
 	private int qty;
 	private double price;
 	
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
@@ -53,7 +53,7 @@ public class Pharmaceutical {
 	}
 
 
-	public Pharmaceutical(int id, String name,String brandName, int qty, double price) {
+	public Pharmaceutical(String id, String name,String brandName, int qty, double price) {
 		super();
 		this.id = id;
 		this.name = name;

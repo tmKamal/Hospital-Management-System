@@ -7,59 +7,55 @@ Custom content page - body - Referencing (adminheader.jsp)
 <div class="main_content col-lg-10 col-md-12 col-sm-12 ">
 
     <!--Form-->
-    <form action="addproduct.php" class="form-horizontal" method="post" enctype="multipart/form-data">
+    <form action="PharmaceuticalControllerServlet" class="form-horizontal" method="POST" >
         <fieldset>
 
             <!-- Form Name -->
             <div class="content-title">
-                <h2>ADD PRODUCT</h2>
+                <h2>ADD PHARMACEUTICAL</h2>
             </div>
-
-            <!-- Input Product Name-->
+            
+            <!-- Input for send info of request-->
+            <input type="hidden" name="infoPost" value="add">
+            
+            
+            <!-- Input Pharmaceutical ID-->
             <div class="form-group row">
-                <label for="prodName" class="col-lg-2 col-form-label-sm">Product Name</label>
+                <label for="phId" class="col-lg-2 col-form-label-sm">Pharmaceutical ID</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control form-control-sm" id="prodName" name="prodName" placeholder="Product Name">
+                    <input type="text" class="form-control form-control-sm" id="phId" name="phId" placeholder="Pharmacetical ID">
                 </div>
             </div>
 
+            <!-- Input Pharmaceutical Name-->
             <div class="form-group row">
-                <label for="prodImg22" class="col-lg-2 col-form-label-sm">Images</label>
-                <input type="file" name="file[]" id="file" class="inputfile inputfile-6" data-multiple-caption="{count} files selected" multiple />
-                <label for="file"><span></span> <strong> Choose a file&hellip;</strong></label>
-            </div>
-
-
-            <!-- Input Product Price-->
-            <div class="form-group row">
-                <label for="prodPrice" class="col-lg-2 col-form-label-sm">Price</label>
+                <label for="phName" class="col-lg-2 col-form-label-sm">Pharmaceutical Name</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control form-control-sm" id="prodPrice" name="prodPrice" placeholder="2500">
+                    <input type="text" class="form-control form-control-sm" id="phName" name="phName" placeholder="Pharmacetical Name">
                 </div>
             </div>
-
-            <!-- DropDown Product Category-->
+			
+			<!-- Input Pharmaceutical Brand Name-->
             <div class="form-group row">
-                <label for="prodCategory" class="col-lg-2 col-form-label-sm">Category</label>
+                <label for="phName" class="col-lg-2 col-form-label-sm">Pharmaceutical Brand Name</label>
                 <div class="col-lg-10">
-                    <select class="form-control form-control-sm" id="prodCategory" name="prodCategory">
-                        <option value="1">Phone</option>
-                        <option value="2">Cases</option>
-                        <option value="3">Cables</option>
-                        <option value="4">Adapters</option>
-                        <option value="5">Audio</option>
-                        <option value="6">Screen Protectors</option>
-                    </select>
+                    <input type="text" class="form-control form-control-sm" id="phBrand" name="phBrand" placeholder="Brand Name">
                 </div>
             </div>
-
-
-
-            <!-- TextArea Product description-->
+            
+            <!-- Input Pharmaceutical Price-->
             <div class="form-group row">
-                <label for="prodDescription" class="col-lg-2 col-form-label-sm">Description</label>
+                <label for="phPrice" class="col-lg-2 col-form-label-sm">Price</label>
                 <div class="col-lg-10">
-                    <textarea class="form-control form-control-sm" id="prodDescription" name="prodDescription" placeholder="Details about your Product. (300 words or less..)"></textarea>
+                    <input type="text" class="form-control form-control-sm" id="phPrice" name="phPrice" placeholder="2500">
+                </div>
+            </div>
+            
+            <!-- Input Pharmaceutical Qty-->
+            <div class="form-group row">
+                <label for="phQty" class="col-lg-2 col-form-label-sm">Quantity</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control form-control-sm" id="phQty" name="phQty" placeholder="1">
                 </div>
             </div>
 
