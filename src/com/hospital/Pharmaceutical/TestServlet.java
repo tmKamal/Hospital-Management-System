@@ -1,4 +1,4 @@
-package com.hospital.management.jdbc;
+package com.hospital.Pharmaceutical;
 
 import java.io.IOException;
 import java.io.PrintWriter;

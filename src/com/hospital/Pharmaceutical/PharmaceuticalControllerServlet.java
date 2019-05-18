@@ -1,4 +1,4 @@
-package com.hospital.management.jdbc;
+package com.hospital.Pharmaceutical;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+
+import com.hospital.patient.Patient;
 
 
 @WebServlet("/PharmaceuticalControllerServlet")
@@ -68,6 +70,7 @@ public class PharmaceuticalControllerServlet extends HttpServlet {
 				
 			case "deleteForm":
 				deleteMedicine(request,response);
+				break;
 
 			default:
 				listMedicine(request, response);
@@ -129,18 +132,81 @@ public class PharmaceuticalControllerServlet extends HttpServlet {
 				
 			case "add":
 				addMedicine(request,response);
+				break;
+				
+			case "selectPatient":
+				selectPatient(request,response);
+				break;
+				
+			case "selectMed":
+				selectMedicine(request,response);
+				break;
 
 			default:
-				listMedicine(request, response);
+				//listMedicine(request, response);
 				break;
 			}
 			
 		}catch(Exception exc) {
 			System.out.println("Error is: "+exc);
+			exc.printStackTrace();
 		}
 
 	}
 	
+	private void selectMedicine(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String medId=request.getParameter("pMedId");
+		
+		//Retrieve Data from DB and save in Pharmaceutical object
+		Pharmaceutical pMedDb=pdb.selectMedDb(medId);
+		
+		
+		
+		//send to the Jsp page (view)
+		if(pMedDb==null) {
+			request.getSession().setAttribute("medDb", "No Such Medicine bro");
+			RequestDispatcher fly4=request.getRequestDispatcher("/assignMed.jsp");
+			fly4.forward(request, response);
+		}else {
+			//Set Attribute
+			request.setAttribute("selectMedDb", pMedDb);
+			RequestDispatcher fly4=request.getRequestDispatcher("/assignMedDb.jsp");
+			fly4.forward(request, response);
+		}
+		
+	}
+
+	private void selectPatient(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+			String patientId=request.getParameter("pNic");
+			 
+		
+			//Retrieve data from database and save in Patient object
+				//==From Patient table==
+			Patient p1=pdb.selectPatientDb(patientId);
+				//==From allocated_medicine table==
+			List<AllocatedPharmaceutical> a1=pdb.showAllocatedMeds(patientId);
+			
+			//add object to attributes
+				//==Retrieved data From Patient table== 
+			
+				//==Retrieved data From Allocated_medicne==
+			request.setAttribute("AllocatedDb", a1);
+			
+			//send to the Jsp page (view)
+			if(p1==null) {
+				request.getSession().setAttribute("userdb", "no_user");
+				RequestDispatcher fly3=request.getRequestDispatcher("/selectPatient.jsp");
+				fly3.forward(request, response);
+			}else {
+				request.setAttribute("PatientDb", p1);
+				RequestDispatcher fly3=request.getRequestDispatcher("/assignMed.jsp");
+				fly3.forward(request, response);
+			}
+			
+			
+	}
+
 	private void updateMedicineDb(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//Receive medicines from the JSP form.
 			String pId=request.getParameter("phId");
@@ -193,6 +259,7 @@ public class PharmaceuticalControllerServlet extends HttpServlet {
 			//send to the Jsp psge (view)
 			RequestDispatcher fly=request.getRequestDispatcher("/viewPharmaceutical.jsp");
 			fly.forward(request, response);
+			
 			
 		} catch (Exception e) {
 			

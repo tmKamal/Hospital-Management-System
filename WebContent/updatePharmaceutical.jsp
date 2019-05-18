@@ -1,5 +1,5 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="java.util.List,com.hospital.management.jdbc.*"%>
+<%@page import="java.util.List,com.hospital.Pharmaceutical.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <jsp:include page="include/adminheader.jsp" />  

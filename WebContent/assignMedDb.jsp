@@ -2,22 +2,18 @@
 <%@page import="java.util.List,com.hospital.Pharmaceutical.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<jsp:include page="include/adminheader.jsp" />
-
-
-<%
-		//get the pharmaceutical from the Controller class
-		
-		List<Pharmaceutical> listJspP=(List<Pharmaceutical>)request.getAttribute("tmpList");
-%>
+<jsp:include page="include/adminheader.jsp" />  
 
 <!--=====================================================
 Custom content page - body - Referencing (adminheader.jsp)
 =========================================================-->
+ <%! String s1 = ""; %>
+ <% s1  = (String) session.getAttribute("medDb");%>
 
 <div class="main_content col-lg-10 col-md-12 col-sm-12 ">
+
     <div class="content-title">
-        <h2>VIEW PHARMACEUTICALS</h2>
+        <h2>Pharmaceutical Details</h2>
         <div class="row">
             <div class="col-sm-12 table-inside">
 
@@ -28,34 +24,18 @@ Custom content page - body - Referencing (adminheader.jsp)
                         <th scope="col">Name</th>
                         <th scope="col">Brand Name</th>
                         <th scope="col">Qty</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Remove</th>
+                        
                     </tr>
                     </thead>
                     <tbody>
 
-                   			
-                   		<%
-                   		
-                   		
-							for(Pharmaceutical printList : listJspP){
-								java.util.Formatter formatter = new java.util.Formatter();
-								%>
 								<tr>
-									<td><%= printList.getId()%></td>
-									<td><%= printList.getName()%></td>
-									<td><%= printList.getBrandName()%></td>
-									<td><%= printList.getQty()%></td>
-									<td align="right"><%= formatter.format("%.2f", printList.getPrice()) %></td>
-									<td><a href="PharmaceuticalControllerServlet?info=updateForm&id=<%= printList.getId()%>">Update</a></td>
-									<td><a href="PharmaceuticalControllerServlet?info=deleteForm&id=<%= printList.getId()%>">Delete</a></td>
+									<td>${selectMedDb.id}</td>
+									<td>${selectMedDb.name}</td>
+									<td>${selectMedDb.brandName}</td>
+									<td>${selectMedDb.qty}</td>
 								</tr>
-								<% 
-							}
-						%>
-
-
+		
                     </tbody>
                 </table>
 
@@ -63,8 +43,36 @@ Custom content page - body - Referencing (adminheader.jsp)
         </div>
 
     </div>
-    <!--form-->
-</div><!--Main content end-->
+    
+
+    <!--Form-->
+    <form action="PharmaceuticalControllerServlet" class="form-horizontal" method="POST" >
+        <fieldset>
+
+            <!-- Input for send info of request-->
+            <input type="hidden" name="infoPost" value="updateMed">
+            
+            
+            <!-- Input Pharmaceutical ID-->
+            <div class="form-group row">
+                <label for="pMedId" class="col-lg-2 col-form-label-sm">Qty</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control form-control-sm" id="pMedId" name="pMedId" placeholder="Medicine ID">
+                </div>
+            </div>
+            
+            <% if(s1!=null){ %>
+		    <div class="besideemailbox" style="color : red">No Such Medicine</div>
+		    <% }else { %>
+		    <div class="besideemailbox" style="color : green">There You go</div>
+		    <% } %>
+            
+            <button name="btnSubmit" type="submit" class="btn btn-outline-success btn-sm">Assign</button>
+
+        </fieldset>
+    </form>
+
+
 <!--END-Custom page content-->
 </div>
 </div>

@@ -1,4 +1,4 @@
-package com.hospital.management.jdbc;
+package com.hospital.Pharmaceutical;
 
 public class Pharmaceutical {
 	 String id;

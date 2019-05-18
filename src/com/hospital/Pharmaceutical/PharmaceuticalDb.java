@@ -1,4 +1,4 @@
-package com.hospital.management.jdbc;
+package com.hospital.Pharmaceutical;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,7 +9,9 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.hospital.patient.Patient;
 import com.mysql.jdbc.PreparedStatement;
+import com.sun.org.apache.bcel.internal.generic.ALOAD;
 
 public class PharmaceuticalDb {
 	
@@ -226,6 +228,134 @@ public class PharmaceuticalDb {
 		}
 		
 		
+	}
+
+	public Patient selectPatientDb(String patientId) throws Exception {
+		Patient patientDb=null;
+		Connection myConn=null;
+		java.sql.PreparedStatement myStmt=null;
+		ResultSet myRs=null;
+		//get connection
+		try {
+			myConn=datasource.getConnection();
+			String sql="select * from patient where nic=?";
+			//prepare statement
+			myStmt=myConn.prepareStatement(sql);
+			myStmt.setString(1, patientId);
+			
+			//execute Statement
+			myRs=myStmt.executeQuery();
+			//Reading 
+			if(myRs.next()) {
+				String pid=myRs.getString("nic");
+				String firstName=myRs.getString("first_name");
+				String lastName=myRs.getString("last_name");
+				String address=myRs.getString("address");
+				String description=myRs.getString("description");
+				
+				//Assign to the object
+				patientDb=new Patient(pid, firstName, lastName, address, description);
+			}else {
+				return null;
+			}
+			
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(myConn, myStmt, myRs);
+		}
+		
+		return patientDb;
+	}
+
+	public List<AllocatedPharmaceutical> showAllocatedMeds(String patientId) throws Exception {
+		Connection myConn=null;
+		java.sql.PreparedStatement myStmt=null;
+		ResultSet myRs=null;
+		AllocatedPharmaceutical allocatedDb;
+		List<AllocatedPharmaceutical>listAllocated=new ArrayList<AllocatedPharmaceutical>();
+		
+		
+				try {
+					//get connection
+					myConn=datasource.getConnection();
+					//SQL
+					String sql="select a.id,ph.p_id,ph.p_name,ph.p_brand_name,a.qty "
+								+"from allocated_medicine a, patient p, pharmaceutical ph "
+								+"where a.patient_nic=p.nic and ph.p_id=a.pharmaceutical_id  and a.patient_nic=? ";
+					//prepare statement
+					myStmt=myConn.prepareStatement(sql);
+					myStmt.setString(1, patientId);
+					
+					//execute Statement
+					myRs=myStmt.executeQuery();
+					//Reading 
+					while(myRs.next()) {
+						int id=myRs.getInt("a.id");
+						String pId=myRs.getString("ph.p_id");
+						String pName=myRs.getString("ph.p_name");
+						String pBrandName=myRs.getString("ph.p_brand_name");
+						int qty=myRs.getInt("a.qty");
+						
+						
+						//Assign to the object
+						AllocatedPharmaceutical allo1=new AllocatedPharmaceutical(id, pId, qty, pName, pBrandName);
+						listAllocated.add(allo1);
+					}
+					
+					
+				} catch (SQLException e) {
+					
+					e.printStackTrace();
+				}finally {
+					close(myConn, myStmt, myRs);
+				}
+				
+		
+		return listAllocated;
+	}
+
+	public Pharmaceutical selectMedDb(String medId) {
+		
+		Pharmaceutical medDb=null;
+		Connection myConn=null;
+		java.sql.PreparedStatement myStmt=null;
+		ResultSet myRs=null;
+		//get connection
+		try {
+			myConn=datasource.getConnection();
+			String sql="select * from pharmaceutical where p_id=?";
+			//prepare statement
+			myStmt=myConn.prepareStatement(sql);
+			myStmt.setString(1, medId);
+			
+			//execute Statement
+			myRs=myStmt.executeQuery();
+			//Reading 
+			if(myRs.next()) {
+			String pid=myRs.getString("p_id");
+			String pname=myRs.getString("p_name");
+			String pbrand=myRs.getString("p_brand_name");
+			int pqty=myRs.getInt("p_qty");
+			double pprice=myRs.getDouble("p_price");
+			
+			//Assign to the object
+			medDb=new Pharmaceutical(pid, pname, pbrand, pqty, pprice);
+			}else {
+				return null;
+			}
+			
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(myConn, myStmt, myRs);
+		}
+		
+		return medDb;
 	}
 
 	
