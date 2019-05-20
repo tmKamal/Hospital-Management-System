@@ -4,6 +4,24 @@
     pageEncoding="ISO-8859-1"%>
 <jsp:include page="include/adminheader.jsp" />
 
+<%
+	//===================================
+	//-------- Login Session ------------
+	//===================================
+	
+	//Clean Cache
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");//HTTP v1.1
+	response.setHeader("Pragma", "no-cache"); //HTTP v1.0
+	response.setHeader("Expires", "0"); //for Proxie Servers
+	
+	if(session.getAttribute("power")=="all"){
+		//Stay on the page
+	}else{
+		response.sendRedirect("index.html");
+	}
+	//===================================
+%>
+
 
 <%
 		//get the pharmaceutical from the Controller class
@@ -28,16 +46,14 @@ Custom content page - body - Referencing (adminheader.jsp)
                         <th scope="col">Name</th>
                         <th scope="col">Brand Name</th>
                         <th scope="col">Qty</th>
-                        <th scope="col">Price</th>
+                        <th style="text-align: right;padding-right: 20px;" scope="col">Price</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Remove</th>
                     </tr>
                     </thead>
                     <tbody>
-
-                   			
+			
                    		<%
-                   		
                    		
 							for(Pharmaceutical printList : listJspP){
 								java.util.Formatter formatter = new java.util.Formatter();
@@ -47,7 +63,7 @@ Custom content page - body - Referencing (adminheader.jsp)
 									<td><%= printList.getName()%></td>
 									<td><%= printList.getBrandName()%></td>
 									<td><%= printList.getQty()%></td>
-									<td align="right"><%= formatter.format("%.2f", printList.getPrice()) %></td>
+									<td style="padding-right: 20px;" align="right"><%= formatter.format("%.2f", printList.getPrice()) %></td>
 									<td><a href="PharmaceuticalControllerServlet?info=updateForm&id=<%= printList.getId()%>">Update</a></td>
 									<td><a href="PharmaceuticalControllerServlet?info=deleteForm&id=<%= printList.getId()%>">Delete</a></td>
 								</tr>
@@ -72,8 +88,6 @@ Custom content page - body - Referencing (adminheader.jsp)
 </div><!--End PAGE CONTENT-->
 </div>
 <!--End NEW Structure-->
-
-
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

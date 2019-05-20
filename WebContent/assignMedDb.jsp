@@ -7,13 +7,19 @@
 <!--=====================================================
 Custom content page - body - Referencing (adminheader.jsp)
 =========================================================-->
- <%! String s1 = ""; %>
- <% s1  = (String) session.getAttribute("medDb");%>
+ <%! String validation = ""; %>
+ <%  validation  = (String) session.getAttribute("validation");
+ 	 //int val=Integer.parseInt(validation);
+
+ %>
+  <%! String patientNic = ""; %>
+ <% patientNic  = (String) session.getAttribute("medUserId");%>
 
 <div class="main_content col-lg-10 col-md-12 col-sm-12 ">
 
     <div class="content-title">
         <h2>Pharmaceutical Details</h2>
+        <h2>user id : <%=patientNic %></h2>
         <div class="row">
             <div class="col-sm-12 table-inside">
 
@@ -52,19 +58,25 @@ Custom content page - body - Referencing (adminheader.jsp)
             <!-- Input for send info of request-->
             <input type="hidden" name="infoPost" value="updateMed">
             
+            <input type="hidden" name="availableQty" value="${selectMedDb.qty}">
+            <input type="hidden" name="pId" value="${selectMedDb.id}">
+            <input type="hidden" name="pName" value="${selectMedDb.name}">
+            <input type="hidden" name="pBrandName" value="${selectMedDb.brandName}">
+            <input type="hidden" name="pPrice" value="${selectMedDb.price}">
+            
             
             <!-- Input Pharmaceutical ID-->
             <div class="form-group row">
                 <label for="pMedId" class="col-lg-2 col-form-label-sm">Qty</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control form-control-sm" id="pMedId" name="pMedId" placeholder="Medicine ID">
+                    <input type="text" class="form-control form-control-sm" id="pQty" name="pQty" placeholder="Qty">
                 </div>
             </div>
             
-            <% if(s1!=null){ %>
-		    <div class="besideemailbox" style="color : red">No Such Medicine</div>
+            <% if(validation!=null){ %>
+		    <div class="besideemailbox" style="color : red">Only ${selectMedDb.qty} available in the stock</div>
 		    <% }else { %>
-		    <div class="besideemailbox" style="color : green">There You go</div>
+		    <div class="besideemailbox" style="color : green"></div>
 		    <% } %>
             
             <button name="btnSubmit" type="submit" class="btn btn-outline-success btn-sm">Assign</button>

@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.hospital.login.Admin;
 import com.hospital.patient.Patient;
 import com.mysql.jdbc.PreparedStatement;
 import com.sun.org.apache.bcel.internal.generic.ALOAD;
@@ -335,14 +336,14 @@ public class PharmaceuticalDb {
 			myRs=myStmt.executeQuery();
 			//Reading 
 			if(myRs.next()) {
-			String pid=myRs.getString("p_id");
-			String pname=myRs.getString("p_name");
-			String pbrand=myRs.getString("p_brand_name");
-			int pqty=myRs.getInt("p_qty");
-			double pprice=myRs.getDouble("p_price");
-			
-			//Assign to the object
-			medDb=new Pharmaceutical(pid, pname, pbrand, pqty, pprice);
+				String pid=myRs.getString("p_id");
+				String pname=myRs.getString("p_name");
+				String pbrand=myRs.getString("p_brand_name");
+				int pqty=myRs.getInt("p_qty");
+				double pprice=myRs.getDouble("p_price");
+				
+				//Assign to the object
+				medDb=new Pharmaceutical(pid, pname, pbrand, pqty, pprice);
 			}else {
 				return null;
 			}
@@ -356,6 +357,66 @@ public class PharmaceuticalDb {
 		}
 		
 		return medDb;
+	}
+
+	public void insertAllocatedMeds(String patientNic, String p_id, int nQty) {
+		Connection myConn1=null;
+		java.sql.PreparedStatement myStmt1=null;
+		
+			try {
+				//Connection
+				myConn1=datasource.getConnection();
+				
+				//Create SQL for insert
+				
+				String sql="insert into allocated_medicine "
+							+"(patient_nic, pharmaceutical_id, qty)"
+							+"values(?, ?, ?)";
+				
+				//Prepare Statements
+				myStmt1=myConn1.prepareStatement(sql);
+				//Add Values to the related fields
+				myStmt1.setString(1, patientNic);
+				myStmt1.setString(2, p_id);
+				myStmt1.setInt(3, nQty);		
+				//Execute
+				myStmt1.execute();
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(myConn1, myStmt1, null);	
+			}
+		
+	}
+
+	public void updateOriginalMed(String p_id, int rQty) throws SQLException {
+		Connection myConn=null;
+		java.sql.PreparedStatement myStmt=null;
+		
+		try {
+			//create connection
+			myConn=datasource.getConnection();
+			//sql statement
+			String sql="update pharmaceutical "
+						+"set p_qty=? "
+						+"where p_id=?";
+			//prepare Statement
+			myStmt=myConn.prepareStatement(sql);
+			//set parameters of the sql statement
+			
+			myStmt.setInt(1, rQty);
+			myStmt.setString(2, p_id);
+			
+			
+			//execute sql command
+			myStmt.execute();
+		}finally {
+			//close JDBC connection
+			close(myConn, myStmt, null);
+			
+		}	
 	}
 
 	

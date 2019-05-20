@@ -29,9 +29,11 @@ Custom content page - body - Referencing (adminheader.jsp)
             </div>
 		   
 		    <% if(s1!=null){ %>
-		    <div class="besideemailbox" style="color : red">Email Already exist</div>
+		    <div class="alert alert-danger" role="alert">
+  				<strong>Ooops!</strong>That Patient doesn't exists.
+			</div>
 		    <% }else { %>
-		    <div class="besideemailbox" style="color : green">ok or a tick</div>
+		    
 		    <% } %>
     
             <button name="btnSubmit" type="submit" class="btn btn-outline-success btn-sm">Submit</button>

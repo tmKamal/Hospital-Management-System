@@ -1,8 +1,8 @@
 package com.hospital.Pharmaceutical;
 
 public class Pharmaceutical {
-	 String id;
-	 String name;
+	private String id;
+	private String name;
 	private String brandName;
 	private int qty;
 	private double price;
@@ -31,7 +31,6 @@ public class Pharmaceutical {
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	public int getQty() {
 		return qty;
@@ -67,7 +66,5 @@ public class Pharmaceutical {
 	public String toString() {
 		return "Pharmaceutical [id=" + id + ", name=" + name + ", Brand Name="+brandName+", qty=" + qty + ", price=" + price + "]";
 	}
-	
-	
 	
 }

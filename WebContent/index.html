@@ -1,16 +1,21 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<!--Login CSS-->
+<link rel="stylesheet" href="css/login.css">
+<!--FontAwesome Icons CSS-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 <title>Hospital Management System</title>
 </head>
 <body>
-	<h1>Hospital Management System</h1>
-	<h3>Version 01</h3>
 	
-	<input type="button" value="Log In" 
-	onclick="window.location.href='PharmaceuticalControllerServlet';return false;">
-
+	<div class="login-box">
+			<h2>Hospital Management System</h2>
+			<a href="#" class="social-button" id="nurse-connect"> <span style="text-align:left; margin-left:-65px"><i style="margin-right: 50px;text-align: left;" class="fas fa-user-cog"></i>Login as Nurse</span></a>
+			<a href="#" class="social-button" id="cashier-connect"> <span style="text-align:left; margin-left:-65px"><i style="margin-right: 50px;text-align: left;" class="fas fa-user-cog"></i>Login as Cashier</span></a>
+			<a href="loginAdmin.jsp" class="social-button" id="admin-connect"> <span style="text-align:left; margin-left:-65px"><i style="margin-right: 50px;text-align: left;" class="fas fa-user-cog"></i>Login as Administrator</span></a>
+	</div>
+	
 </body>
 </html>

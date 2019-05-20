@@ -8,17 +8,16 @@ public class Patient {
 	private String address;
 	private String description;
 	  
-	  
-	  
-	  
+
 	public Patient(String nic, String firstName, String lastName, String address, String description) {
-		super();
+		
 		this.nic = nic;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
 		this.description = description;
 	}
+	
 	public String getNic() {
 		return nic;
 	}
@@ -49,9 +48,5 @@ public class Patient {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	  
-	  
-	  
-	  
-	  
+	    
 }

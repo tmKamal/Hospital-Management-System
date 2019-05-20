@@ -1,3 +1,4 @@
+<%@page import="com.hospital.patient.Patient"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.List,com.hospital.Pharmaceutical.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -8,7 +9,14 @@
 Custom content page - body - Referencing (adminheader.jsp)
 =========================================================-->
  <%! String s2 = ""; %>
- <% s2  = (String) session.getAttribute("medDb");%>
+ <% s2  = (String) session.getAttribute("medDb1");%>
+ <%
+ 	//set related Patient Nic as a Session
+ 	
+ 	Patient sesPatient=(Patient)request.getAttribute("PatientDb");
+ 	String sesPatientNic=sesPatient.getNic();
+ 	session.setAttribute("medUserId", sesPatientNic);
+ %>
 
 <div class="main_content col-lg-10 col-md-12 col-sm-12 ">
 
@@ -19,10 +27,13 @@ Custom content page - body - Referencing (adminheader.jsp)
             <!-- Form Name -->
             <div class="content-title">
                 <h2>Patient Name : ${PatientDb.firstName} </h2>
+                <h3>Patient Id : ${PatientDb.nic}</h3>
+               
             </div>
             
             <!-- Input for send info of request-->
             <input type="hidden" name="infoPost" value="selectMed">
+            <input type="hidden" name="patientId" value="${PatientDb.nic}">
             
             
             <!-- Input Pharmaceutical ID-->
@@ -33,11 +44,15 @@ Custom content page - body - Referencing (adminheader.jsp)
                 </div>
             </div>
             
-            <% if(s2!=null){ %>
-		    <div class="besideemailbox" style="color : red">No Such Medicine</div>
-		    <% }else { %>
-		    <div class="besideemailbox" style="color : green">There You go</div>
-		    <% } %>
+            <% if(s2=="ret"){ %>
+		    <!-- When Returning to this after assigned the medicine from assignMedDb -->
+		    <% }else if(s2=="NoMed") { %>
+		    <div class="alert alert-danger" role="alert">
+  				<strong>Ooops!</strong>That Pharmaceutical doesn't exists.
+			</div>
+		    <% }else{ %>
+		    
+		    <%} %>
             
             <button name="btnSubmit1" type="submit" class="btn btn-outline-success btn-sm">Assign</button>
 
@@ -52,9 +67,6 @@ Custom content page - body - Referencing (adminheader.jsp)
 		//List<Pharmaceutical> listJspP=(List<Pharmaceutical>)request.getAttribute("tmpList");
         List<AllocatedPharmaceutical> listAllocatedMeds=(List<AllocatedPharmaceutical>)request.getAttribute("AllocatedDb");
 %>
-
-
-
 <div class="main_content col-lg-10 col-md-12 col-sm-12 ">
     <div class="content-title">
         <h2>Assigned Pharmaceuticals</h2>
@@ -67,10 +79,7 @@ Custom content page - body - Referencing (adminheader.jsp)
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Brand Name</th>
-                        <th scope="col">Qty</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Remove</th>
+                        <th scope="col">Qty</th>      
                     </tr>
                     </thead>
                     <tbody>
@@ -85,7 +94,6 @@ Custom content page - body - Referencing (adminheader.jsp)
 									<td><%= printList.getPhName()%></td>
 									<td><%= printList.getPhBrandName() %></td>
 									<td><%= printList.getQty() %></td>
-		
 								</tr>
 								<% 
 							}
